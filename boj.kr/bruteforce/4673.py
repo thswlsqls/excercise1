@@ -8,7 +8,7 @@ import math
 def f(n, pc):
     return (n%math.pow(10, pc) - n%math.pow(10, pc-1))//math.pow(10, pc-1)
 def d(n):
-    result = n+n%10 
+    result = n+n%10
     pc = 2
     while n // math.pow(10, pc) > 0:
         result += f(n, pc)
