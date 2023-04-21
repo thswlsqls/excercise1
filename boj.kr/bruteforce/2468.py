@@ -1,3 +1,9 @@
+# 1 전체 영역에서 최고, 최저 높이 추출
+# 2 최저-1 -> 최고 높이 까지 검사하면서 아래 반복
+# - board 를 순회하면서 미방문 안전지대의 경우 안전영역개수 cnt 증감하고
+# - dfs 함수를 사용해 방문체크
+# - 안전영역개수 cnt가 max인지 검사
+
 import sys
 sys.setrecursionlimit(10**6)
 
@@ -32,9 +38,3 @@ for h in range(min-1, max):
     result = cnt if result < cnt else result
 
 print(result)
-
-# def dfs(now):
-
-# 전체 영역에서 최고, 최저 높이 추출
-# 최저-1 -> 최고 높이 까지 검사하면서 아래 반복
-# board 를 순회하면서 미방문 안전지대의 경우 cnt 증감하고 dfs 함수를 사용해 방문체크, 안전영역개수 cnt가 max인지 검사
