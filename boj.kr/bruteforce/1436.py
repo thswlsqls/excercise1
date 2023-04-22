@@ -1,9 +1,12 @@
 N = int(input())
-movie = 666
 
-while N:
-    if "666" in str(movie):
-        N -= 1
-    movie += 1
+name = 666
+cnt = 1
+while True:
+    if str(name).__contains__("666"):
+        if cnt == N:
+            break
+        cnt += 1
+    name += 1
 
-print(movie-1)
+print(name)
