@@ -20,7 +20,7 @@ def bfs(rgb, x, y):
             nx = x + dx[i]
             ny = y + dy[i]
             if rgb == 'RG':
-                if 0 <= nx < N and 0 <= ny < N and (board[nx][ny] == 'R' or board[nx][ny] == 'G') and not chk[nx][ny] :
+                if 0 <= nx < N and 0 <= ny < N and (board[nx][ny] == 'R' or board[nx][ny] == 'G') and not chk[nx][ny]:
                     dq.append((nx, ny))
                     chk[nx][ny] = True
             else:
@@ -28,9 +28,7 @@ def bfs(rgb, x, y):
                     dq.append((nx, ny))
                     chk[nx][ny] = True
 
-R_cnt = 0
-G_cnt = 0
-B_cnt = 0
+(R_cnt, G_cnt, B_cnt) = (0, 0, 0)
 chk = [[False]*N for _ in range(N)]
 for x in range(N):
     for y in range(N):
