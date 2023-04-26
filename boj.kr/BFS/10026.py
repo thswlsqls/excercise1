@@ -52,4 +52,3 @@ for x in range(N):
 
 print(R_cnt+G_cnt+B_cnt)
 print(RG_cnt+B_cnt)
-
