@@ -26,7 +26,7 @@ def bfs():
                 chk[ny][nx][break_left] = chk[y][x][break_left] + 1
                 dq.append((ny, nx, break_left))
             if 0 <= nx < M and 0 <= ny < N and board[ny][nx] == '1' and break_left == 1:
-                chk[ny][nx][break_left] = 1
+                chk[ny][nx][break_left] = chk[y][x][break_left] + 1
                 chk[ny][nx][break_left -1] = chk[y][x][break_left] + 1
                 dq.append((ny, nx, break_left-1))
 
