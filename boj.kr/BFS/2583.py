@@ -3,8 +3,8 @@ coord = [list(map(int, input().split())) for _ in range(K)]
 board = [[0]*N for _ in range(M)]
 
 for i in range(K):
-    for xi in range(coord[i][0], coord[i][2]):
-        for yi in range(coord[i][1], coord[i][3]):
+    for yi in range(coord[i][1], coord[i][3]):
+        for xi in range(coord[i][0], coord[i][2]):
             board[yi][xi] = 1
 
 from collections import deque
