@@ -1,7 +1,7 @@
+from collections import deque
+
 N, L, R = map(int, input().split())
 board = [list(map(int, input().split())) for _ in range(N)]
-
-from collections import deque
 
 dy = (0, 0, 1, -1)
 dx = (1, -1, 0, 0)
