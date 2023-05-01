@@ -14,7 +14,6 @@ def dfs(node):
                 flag = False
                 return
 
-
 for _ in range(N):
     flag = True
     V, E = map(int, input().split())
@@ -33,4 +32,3 @@ for _ in range(N):
                 break
 
     print("YES" if flag else "NO")
-
