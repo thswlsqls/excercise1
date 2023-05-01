@@ -8,7 +8,7 @@ dy = (1, -1, 0, 0)
 dx = (0, 0, 1, -1)
 
 ice_set = set()
-def day_after(graph):
+def year_after(graph):
     cnt_0 = 0
     temp = [g[:] for g in graph]
     for y in range(1, N-1):
@@ -33,11 +33,11 @@ def dfs(y, x):
             visited[ny][nx] = True
             dfs(ny, nx)
 
-day_cnt = 0
+year_cnt = 0
 while True:
     visited = [[False] * M for _ in range(N)]
-    graph = [g[:] for g in day_after(graph)]
-    day_cnt += 1
+    graph = [g[:] for g in year_after(graph)]
+    year_cnt += 1
     cnt = 0
     flag = True
     for (y, x) in ice_set:
@@ -49,7 +49,7 @@ while True:
     if cnt >= 2:
         break
     if flag:
-        day_cnt = 0
+        year_cnt = 0
         break
 
-print(day_cnt)
+print(year_cnt)
