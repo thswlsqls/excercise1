@@ -4,6 +4,9 @@ graph = [list(input().strip()) for _ in range(R)]
 visited = set(graph[0][0])
 max_d = 1
 
+import sys
+sys.setrecursionlimit(10 ** 6)
+
 dy = (-1, 1, 0, 0)
 dx = (0, 0, -1, 1)
 def dfs(y, x, d):
