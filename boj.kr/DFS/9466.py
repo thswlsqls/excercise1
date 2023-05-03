@@ -15,7 +15,6 @@ def dfs(node):
     else:
         dfs(nxt)
 
-
 for i in range(T):
     N = int(input())
     choose = [0] + list(map(int, input().split()))
@@ -28,4 +27,3 @@ for i in range(T):
             dfs(n)
 
     print(N - len(team_members))
-
