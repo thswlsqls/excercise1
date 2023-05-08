@@ -1,8 +1,6 @@
 N = int(input())
 times = [list(map(int, input().split())) for _ in range(N)]
-
-times = sorted(times, key=lambda x : x[0])
-times = sorted(times, key=lambda x : x[1])
+times = sorted(times, key=lambda x : (x[1], x[0]))
 
 last_e = 0
 cnt = 0
