@@ -6,9 +6,7 @@ for i in range(N):
     heapq.heappush(cards, int(input()))
 
 tot = 0
-if N == 1:
-    tot = 0
-else:
+if N > 1:
     while len(cards) > 1:
         a = heapq.heappop(cards)
         b = heapq.heappop(cards)
