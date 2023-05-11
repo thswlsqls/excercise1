@@ -3,22 +3,24 @@ input = sys.stdin.readline
 
 N, K = map(int, input().split())
 
+import heapq
 items = []
 for _ in range(N):
-    items.append(list(map(int, input().split())))
-items = sorted(items, key = lambda x:x[1], reverse=True)
-weights = []
+    heapq.heappush(items, list(map(int, input().split())))
 
 bags = []
 for _ in range(K):
-    bags.append(int(input()))
+    heapq.heappush(bags, int(input()))
 
 tot = 0
-for item in items:
-    # av_bags = sorted(list(filter(lambda x: x>=item[0], bags)))
-    av_bags = [x for x in bags if x>=item[0]]
-    if len(av_bags) > 0:
-        bags.remove(min(av_bags))
-        tot += item[1]
+temp_items = []
+while bags:
+    bag = heapq.heappop(bags)
+    while items and bag >= items[0][0]:
+        heapq.heappush(temp_items, -heapq.heappop(items)[1])
+    if temp_items:
+        tot += -heapq.heappop(temp_items)
+    elif not items:
+        break
 
 print(tot)
