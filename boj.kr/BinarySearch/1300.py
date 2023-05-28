@@ -3,7 +3,6 @@ k = int(input())
 
 lo = 0
 hi = k
-ans = 0
 
 while lo <= hi:
     mid = (lo + hi) // 2
