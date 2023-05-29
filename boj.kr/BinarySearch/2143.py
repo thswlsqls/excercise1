@@ -16,7 +16,6 @@ for k in range(len(M_list)):
         M_sub = M_list[k:l]
         M_sums.append(sum(M_sub))
 
-N_sums.sort()
 M_sums.sort()
 
 from bisect import bisect_left, bisect_right
@@ -28,7 +27,3 @@ for N_sum in N_sums:
     cnt += r-l
 
 print(cnt)
-
-
-
-
