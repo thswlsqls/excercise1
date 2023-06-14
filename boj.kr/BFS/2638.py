@@ -1,9 +1,7 @@
 N, M = map(int, input().split())
 graph = [list(map(int, input().split())) for _ in range(N)]
-
 dy = [1, -1, 0, 0]
 dx = [0, 0, 1, -1]
-
 from collections import deque
 
 def bfs():
