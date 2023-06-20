@@ -1,5 +1,4 @@
 T = int(input())
-
 for _ in range(T):
     N = int(input())
     dp = [list(map(int, input().split())) for _ in range(2)]
