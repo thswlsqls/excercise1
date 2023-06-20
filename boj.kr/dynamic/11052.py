@@ -6,7 +6,9 @@ for _ in range(1, N+1):
 
 for ci in range(2, len(cards)):
     for ni in range(ci, N+1):
-        dp[ci][ni] = max(max(dp[ci-1][ni] , dp[ci-1][ni-ci] + cards[ci]), dp[ci][ni-ci]+cards[ci])
+        dp[ci][ni] = max(max(dp[ci-1][ni]
+                             , dp[ci-1][ni-ci] + cards[ci])
+                             , dp[ci][ni-ci]+cards[ci])
         for _ in range(1, ni+1):
             dp[ci][ni] = max(dp[ci][ni], dp[ci][ni-_]+cards[_])
 ans = -1e9
