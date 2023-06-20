@@ -12,4 +12,3 @@ for ai in range(len(A)):
             dp[bi] = cnt + 1
 
 print(max(dp))
-
