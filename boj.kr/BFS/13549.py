@@ -1,26 +1,21 @@
 N, K = map(int, input().split())
 from collections import deque
-
-chk = [-1 for _ in range(100001)]
-
-def bfs(n):
+chk = [-1] * 100_001
+chk[N] = 0
+def bfs():
     dq = deque()
-    dq.append(n)
-    chk[n] = 0
+    dq.append(N)
     while dq:
-        x = dq.popleft()
+        cur = dq.popleft()
         if chk[K] != -1:
             return chk[K]
-        if 0 <= x*2 < 100001 and chk[x*2] == -1:
-            dq.appendleft(x*2)
-            chk[x*2] = chk[x]
-        if 0 <= x-1 < 100001 and chk[x-1] == -1:
-            dq.append(x-1)
-            chk[x-1] = chk[x] + 1
-        if 0 <= x+1 < 100001 and chk[x+1] == -1:
-            dq.append(x+1)
-            chk[x+1] = chk[x] + 1
-
-print(bfs(N))
-
-
+        if 0 <= cur*2 <= 100_000 and chk[cur*2] == -1:
+            dq.appendleft(cur*2)
+            chk[cur*2] = chk[cur]
+        if 0 <= cur-1 <= 100_000 and chk[cur-1] == -1:
+            dq.append(cur-1)
+            chk[cur-1] = chk[cur] + 1
+        if 0 <= cur+1 <= 100_000 and chk[cur+1] == -1:
+            dq.append(cur+1)
+            chk[cur+1] = chk[cur] + 1
+print(bfs())
