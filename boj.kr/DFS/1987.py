@@ -1,14 +1,12 @@
 R, C = map(int, input().split())
 graph = [list(input().strip()) for _ in range(R)]
 
+dy = (-1, 1, 0, 0)
+dx = (0, 0, -1, 1)
+
 visited = set(graph[0][0])
 max_d = 1
 
-import sys
-sys.setrecursionlimit(10 ** 6)
-
-dy = (-1, 1, 0, 0)
-dx = (0, 0, -1, 1)
 def dfs(y, x, d):
     global max_d
     max_d = max(max_d, d)
@@ -24,4 +22,3 @@ def dfs(y, x, d):
 
 dfs(0, 0, max_d)
 print(max_d)
-
