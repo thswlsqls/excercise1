@@ -1,34 +1,27 @@
+T = int(input())
+
+dy = (-2, -2, -1, -1, 1, 1, 2, 2)
+dx = (-1, 1, -2, 2, -2, 2, -1, 1)
+
 from collections import deque
-
-dx = (1, 1, -1, -1, 2, 2, -2, -2)
-dy = (2, -2, 2, -2, 1, -1, 1, -1)
-
-def bfs(x1, y1, x2, y2, I):
-    if (x1, y1) == (x2, y2):
-        return 0
+def bfs(sx, sy, ex, ey, N):
+    visited = [[0]*N for _ in range(N)]
     dq = deque()
-    dq.append((x1, y1))
-    board = [[0]*I for _ in range(I)]
-    board[x1][y1] = 1
-
+    dq.append((sy, sx, 0))
     while dq:
-        (x, y) = dq.popleft()
+        (cy, cx, d) = dq.popleft()
+        if cy == ey and cx == ex:
+            return d
         for i in range(8):
-            nx = x + dx[i]
-            ny = y + dy[i]
-            if 0 <= nx < I and 0 <= ny < I and not board[nx][ny]:
-                if nx == x2 and ny == y2:
-                    return board[x][y]
-                else:
-                    board[nx][ny] = board[x][y] + 1
-                    dq.append((nx, ny))
+            ny = cy + dy[i]
+            nx = cx + dx[i]
+            if 0<=ny<N and 0<=nx<N and visited[ny][nx] == 0:
+                visited[ny][nx] += 1
+                dq.append((ny, nx, d+1))
 
-N = int(input())
-
-for _ in range(N):
-    I = int(input())
-    (x1, y1) = map(int, input().split())
-    (x2, y2) = map(int, input().split())
-
-    print(bfs(x1, y1, x2, y2, I))
-
+for _ in range(T):
+    N = int(input())
+    graph = [[0]*N for _ in range(N)]
+    (sx, sy) = map(int, input().split())
+    (ex, ey) = map(int, input().split())
+    print(bfs(sx, sy, ex, ey, N))
