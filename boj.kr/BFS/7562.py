@@ -1,8 +1,5 @@
-T = int(input())
-
 dy = (-2, -2, -1, -1, 1, 1, 2, 2)
 dx = (-1, 1, -2, 2, -2, 2, -1, 1)
-
 from collections import deque
 def bfs(sx, sy, ex, ey, N):
     dq = deque()
@@ -18,6 +15,7 @@ def bfs(sx, sy, ex, ey, N):
                 graph[ny][nx] += 1
                 dq.append((ny, nx, d+1))
 
+T = int(input())
 for _ in range(T):
     N = int(input())
     graph = [[0]*N for _ in range(N)]
