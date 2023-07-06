@@ -1,26 +1,20 @@
-# 1. 문자 리스트에서 L개 만큼 문자를 추출해 알파벳 순서로 정렬한 문자열을 candidates에 저장
-# 2. candidates를 순회하면서 모음을 1개 이상, 자음을 2개 이상 포함하는지 검사해 passwords에 저장
-# 3. passwords를 순회하면서 알파벳 순서대로 출력
-
-from itertools import combinations
-
 L, C = map(int, input().split())
-clist = list(input().split())
+words = list(input().split())
+vowels = []
 
-vowels = ['a', 'e', 'i', 'o', 'u']
-
-candidates = set()
-for combi in combinations(clist, L):
-    candidates.add(''.join(sorted(combi)))
+for w in words:
+    if w in ('a', 'e', 'i', 'o', 'u'):
+        vowels.append(w)
 
 passwords = []
-for candidate in sorted(candidates):
-    vowels_cnt = 0
-    for v in vowels:
-        if v in candidate:
-            vowels_cnt += 1
-    if 0<vowels_cnt<=L-2:
-        passwords.append(candidate)
+from itertools import combinations
+for combi in combinations(words, L):
+    v_cnt = 0
+    for c in combi:
+        if c in vowels:
+            v_cnt += 1
+    if 0 < v_cnt <= L-2:
+        passwords.append(''.join(sorted(list(combi))))
 
 for password in sorted(passwords):
     print(password)
