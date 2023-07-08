@@ -1,40 +1,32 @@
-# 1 전체 영역에서 최고, 최저 높이 추출
-# 2 최저-1 -> 최고 높이 까지 검사하면서 아래 반복
-# - board 를 순회하면서 미방문 안전지대의 경우 안전영역개수 cnt 증감하고
-# - dfs 함수를 사용해 방문체크
-# - 안전영역개수 cnt가 max인지 검사
-
-import sys
-sys.setrecursionlimit(10**6)
-
 N = int(input())
 board = [list(map(int, input().split())) for _ in range(N)]
-min = min(map(min, board))
-max = max(map(max, board))
 
-dx = [-1, 1, 0, 0]
-dy = [0, 0, -1, 1]
-
-def dfs(x, y, h):
+import sys
+sys.setrecursionlimit(10**9)
+dy = (1, -1, 0, 0)
+dx = (0, 0, 1, -1)
+def dfs(y, x, h):
     for i in range(4):
-        nx = x + dx[i]
         ny = y + dy[i]
-        if 0<=nx<N and 0<=ny<N and chk[nx][ny]==0 and board[nx][ny]>h:
-            chk[nx][ny]=1
-            dfs(nx, ny, h)
+        nx = x + dx[i]
+        if 0<=ny<N and 0<=nx<N and visited[ny][nx] == 0:
+            if board[ny][nx] >= h:
+                visited[ny][nx] = 1
+                dfs(ny, nx, h)
 
-result = -1e9
-
-for h in range(min-1, max):
-    chk = [[0] * N for _ in range(N)]
+min_h = 1e9
+max_h = -1e9
+min_h = min(map(min, board))
+max_h = max(map(max, board))
+cnt_list = []
+for h in range(min_h, max_h+1):
+    visited = [[0] * N for _ in range(N)]
     cnt = 0
-    for i in range(N):
-        for j in range(N):
-            if board[i][j]>h and chk[i][j]==0:
+    for y2 in range(N):
+        for x2 in range(N):
+            if board[y2][x2] >= h and visited[y2][x2] == 0:
+                visited[y2][x2] = 1
+                dfs(y2, x2, h)
                 cnt += 1
-                chk[i][j]=1
-                dfs(i, j, h)
-
-    result = cnt if result < cnt else result
-
-print(result)
+    cnt_list.append(cnt)
+print(max(cnt_list))
