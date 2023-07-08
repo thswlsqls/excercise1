@@ -1,27 +1,20 @@
-from itertools import combinations
-from itertools import permutations
-
 N = int(input())
 board = [list(map(int, input().split())) for _ in range(N)]
 nums = []
-for _ in range(N):
-    nums.append(_+1)
+for n in range(N):
+    nums.append(n)
 
-min = 1e9
-startT = []
-linkT = []
-
+from itertools import combinations
+from itertools import permutations
+diff_list = []
 for combi in combinations(nums, N//2):
+    start_tot = 0
+    link_tot = 0
     startT = list(combi[:])
     linkT = [x for x in nums if x not in startT]
-    startTP = 0
-    linkTP = 0
     for permu in permutations(startT, 2):
-        startTP += board[permu[0]-1][permu[1]-1]
-    for permu2 in permutations(linkT, 2):
-        linkTP += board[permu2[0]-1][permu2[1]-1]
-    min = abs(startTP - linkTP) if min > abs(startTP - linkTP) else min
-
-print(min)
-
-
+        start_tot += board[permu[0]][permu[1]]
+    for permu in permutations(linkT, 2):
+        link_tot += board[permu[0]][permu[1]]
+    diff_list.append(abs(start_tot-link_tot))
+print(min(diff_list))
