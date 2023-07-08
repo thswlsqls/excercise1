@@ -1,38 +1,28 @@
-from itertools import permutations
-
 N = int(input())
 nums = list(map(int, input().split()))
-ops_cnt = list(map(int, input().split()))
-list = ['+', '-', '*', '//']
-ops_list = []
-
-for i in range(4):
-    for _ in range(ops_cnt[i]):
-        ops_list.append(list[i])
+ops = list(map(int, input().split()))
+qs = '+' * ops[0] + '-' * ops[1] + '*' * ops[2] + '/' * ops[3]
 
 def divide(a, b):
     if a < 0 and b > 0:
-        result = abs(a)//b
-        result = -1 * result
-        return result
-    return a//b
-
-max = -1e9
-min = 1e9
-
-for permu in permutations(ops_list, len(ops_list)):
-    result = nums[0]
-    for i in range(len(permu)):
-        if permu[i] == '*':
-            result *= nums[i+1]
-        if permu[i] == '//':
-            result = divide(result, nums[i+1])
+        return -1 * (abs(a) // b)
+    return a // b
+from itertools import permutations
+max_ans = -int(1e9)
+min_ans = int(1e9)
+for permu in permutations(qs, N - 1):
+    ans = nums[0]
+    for i in range(N - 1):
         if permu[i] == '+':
-            result += nums[i+1]
-        if permu[i] == '-':
-            result -= nums[i+1]
-    min = result if result < min else min
-    max = result if result > max else max
+            ans += nums[i + 1]
+        elif permu[i] == '-':
+            ans -= nums[i + 1]
+        elif permu[i] == '*':
+            ans *= nums[i + 1]
+        elif permu[i] == '/':
+            ans = divide(ans, nums[i + 1])
+    max_ans = max(max_ans, ans)
+    min_ans = min(min_ans, ans)
 
-print(max)
-print(min)
+print(max_ans)
+print(min_ans)
