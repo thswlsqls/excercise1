@@ -61,5 +61,4 @@ for i in range(N-7):
         cntList.append(cnt)
         cnt = 0
 
-
 print(sorted(cntList)[0])
