@@ -1,64 +1,49 @@
 N, M = map(int, input().split())
 board = [input() for _ in range(N)]
-cntBoard = [[0 for _ in range(M)] for _ in range(N)]
-cntBoard2 = [[0 for _ in range(M)] for _ in range(N)]
 
-# 짝수 row 짝수 col = 첫번째칸
-# 짝수 row 홀수 col = 두번째칸
-# 홀수 row 짝수 col = 두번째칸
-# 홀수 row 홀수 col = 첫번째칸
+cntBoardB = [[0 for _ in range(M)] for _ in range(N)]
+cntBoardW = [[0 for _ in range(M)] for _ in range(N)]
 
-for i in range(N):
-    for j in range(M):
-        if i % 2 == 0:
-            if j % 2 == 0:
-                if board[i][j] == 'B':
-                    cntBoard[i][j] = 1
-            if j % 2 == 1:
-                if board[i][j] == 'W':
-                    cntBoard[i][j] = 1
-        if i % 2 == 1:
-            if j % 2 == 0:
-                if board[i][j] == 'W':
-                    cntBoard[i][j] = 1
-            if j % 2 == 1:
-                if board[i][j] == 'B':
-                    cntBoard[i][j] = 1
-
-for i in range(N):
-    for j in range(M):
-        if i % 2 == 0:
-            if j % 2 == 0:
-                if board[i][j] == 'W':
-                    cntBoard2[i][j] = 1
-            if j % 2 == 1:
-                if board[i][j] == 'B':
-                    cntBoard2[i][j] = 1
-        if i % 2 == 1:
-            if j % 2 == 0:
-                if board[i][j] == 'B':
-                    cntBoard2[i][j] = 1
-            if j % 2 == 1:
-                if board[i][j] == 'W':
-                    cntBoard2[i][j] = 1
+for r in range(N):
+    for c in range(M):
+        if r % 2 == 0:
+            if c % 2 == 0:
+                if board[r][c] == 'W':
+                    cntBoardB[r][c] = 1
+                if board[r][c] == 'B':
+                    cntBoardW[r][c] = 1
+            if c % 2 == 1:
+                if board[r][c] == 'W':
+                    cntBoardW[r][c] = 1
+                if board[r][c] == 'B':
+                    cntBoardB[r][c] = 1
+        if r % 2 == 1:
+            if c % 2 == 0:
+                if board[r][c] == 'W':
+                    cntBoardW[r][c] = 1
+                if board[r][c] == 'B':
+                    cntBoardB[r][c] = 1
+            if c % 2 == 1:
+                if board[r][c] == 'W':
+                    cntBoardB[r][c] = 1
+                if board[r][c] == 'B':
+                    cntBoardW[r][c] = 1
 
 cntList = []
-cnt = 0
+cntB = 0
+cntW = 0
 
 for i in range(N-7):
     for j in range(M-7):
-        for k in range(8):
-            for l in range(8):
-                cnt += cntBoard[i+k][j+l]
-        cntList.append(cnt)
-        cnt = 0
-
-for i in range(N-7):
-    for j in range(M-7):
-        for k in range(8):
-            for l in range(8):
-                cnt += cntBoard2[i+k][j+l]
-        cntList.append(cnt)
-        cnt = 0
+        for r in range(8):
+            for c in range(8):
+                if cntBoardB[i+r][j+c] == 1:
+                    cntB += 1
+                if cntBoardW[i+r][j+c] == 1:
+                    cntW += 1
+        cntList.append(cntB)
+        cntList.append(cntW)
+        cntB = 0
+        cntW = 0
 
 print(sorted(cntList)[0])
