@@ -13,16 +13,16 @@ for r in range(N):
                 if board[r][c] == 'B':
                     cntBoardW[r][c] = 1
             if c % 2 == 1:
-                if board[r][c] == 'B':
-                    cntBoardB[r][c] = 1
                 if board[r][c] == 'W':
                     cntBoardW[r][c] = 1
+                if board[r][c] == 'B':
+                    cntBoardB[r][c] = 1
         if r % 2 == 1:
             if c % 2 == 0:
-                if board[r][c] == 'B':
-                    cntBoardB[r][c] = 1
                 if board[r][c] == 'W':
                     cntBoardW[r][c] = 1
+                if board[r][c] == 'B':
+                    cntBoardB[r][c] = 1
             if c % 2 == 1:
                 if board[r][c] == 'W':
                     cntBoardB[r][c] = 1
@@ -35,10 +35,12 @@ cntW = 0
 
 for i in range(N-7):
     for j in range(M-7):
-        for k in range(8):
-            for l in range(8):
-                cntB += cntBoardB[i+k][j+l]
-                cntW += cntBoardW[i+k][j+l]
+        for r in range(8):
+            for c in range(8):
+                if cntBoardB[i+r][j+c] == 1:
+                    cntB += 1
+                if cntBoardW[i+r][j+c] == 1:
+                    cntW += 1
         cntList.append(cntB)
         cntList.append(cntW)
         cntB = 0
