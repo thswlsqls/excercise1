@@ -6,7 +6,7 @@ hi = sum(lectures)
 ans = hi
 
 while lo <= hi:
-    mid = (lo+hi)//2
+    mid = (lo+hi) // 2
 
     if mid < max(lectures):
         lo = mid + 1
